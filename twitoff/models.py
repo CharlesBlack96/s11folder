@@ -12,7 +12,7 @@ class User(DB.Model):
     '''creating id and username columns/schemas for a User'''
     id = DB.Column(DB.BigInteger, primary_key=True, nullable=False)
     username = DB.Column(DB.String, nullable=False)
-    newest_tweet_id = DB.column(DB.BigInteger)
+    newest_tweet_id = DB.Column(DB.BigInteger)
     #tweets = []
 
 class Tweet(DB.Model):

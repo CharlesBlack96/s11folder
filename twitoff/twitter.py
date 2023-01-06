@@ -1,7 +1,8 @@
 from os import getenv
-from .models import DB, Tweet, User
 import tweepy
 import spacy
+from .models import DB, Tweet, User
+
 
 
 #get api keysfrom our .env file
@@ -18,7 +19,7 @@ def add_or_update_user(username):
 
         twitter_user = TWITTER.get_user(screen_name=username)
 
-        db_user = (User.query.get(twitter_user.id)) or User(id=twitter_user.id)
+        db_user = (User.query.get(twitter_user.id)) or User(id=twitter_user.id, username=username)
 
         DB.session.add(db_user)
 
@@ -32,7 +33,7 @@ def add_or_update_user(username):
             db_user.newest_tweet_id = tweets[0].id
 
         for tweet in tweets:
-            tweet_vector = vectorize_tweet(tweet.text)
+            tweet_vector = vectorize_tweet(tweet.full_text)
             db_tweet = Tweet(id=tweet.id,
                             text=tweet.full_text[:300],
                             vect=tweet_vector)

@@ -70,7 +70,7 @@ def create_app():
 
         if user0 == user1:
             message = 'Cannot compare users to themselves!'
-        else: 
+        else:
             prediction = predict_user(user0, user1, request.values['tweet_text'])
             message = '"{}" is more likely to be said by {} than {}.'.format(request.values['tweet_text'], 
                                                                              user1 if prediction else user0,

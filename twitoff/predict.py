@@ -10,8 +10,8 @@ from .twitter import vectorize_tweet
 
 def predict_user(user0_name, user1_name, hypo_tweet_text):
 
-    user0 = User.query.filter(user.username == user0_name).one()
-    user1 = User.query.filter(user.username == user1_name).one()
+    user0 = User.query.filter(User.username == user0_name).one()
+    user1 = User.query.filter(User.username == user1_name).one()
 
     user0_vects = np.array([tweet.vect for tweet in user0.tweets])
     user1_vects = np.array([tweet.vect for tweet in user1.tweets])
@@ -35,11 +35,11 @@ def predict_user(user0_name, user1_name, hypo_tweet_text):
     #train our log reg
     log_reg.fit(vects, labels)
 
-    #vecttorize our hypothetical tweet text 
+    #vecttorize our hypothetical tweet text
     hypo_tweet_vect = vectorize_tweet(hypo_tweet_text)
 
     #get a prediction for which user is more likely to say the text
-    prediction = log_reg.predict(hypo_tweet_text.reshape(1, -1))
+    prediction = log_reg.predict(hypo_tweet_vect.reshape(1, -1))
 
     #we should then print prediction immediately after writing code to test
     
