@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <div id="prediction">
-    <p>{{ title }}</p>
-    <p>{{ message }}</p>
+  <!-- The section below contains prediction information -->
+  <div id="prediction" role="region" aria-live="polite">
+    <!-- Using a heading element to make the title more prominent and semantically meaningful -->
+    <h2>{{ title }}</h2> <!-- <h2> element to represent the title -->
+    <!-- Ensuring the message is presented clearly -->
+    <p>{{ message }}</p> <!-- Paragraph element for the message -->
   </div>
 {% endblock %}

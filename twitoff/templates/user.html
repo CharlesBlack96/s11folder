@@ -1,16 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div id="user-info">
-  <p>{{ title }}</p>
-  <p>{{ message }}</p>
-</div>
+  <!-- Section containing user information -->
+  <div id="user-info" role="region" aria-live="polite">
+    <!-- Heading for user information -->
+    <h2>{{ title }}</h2> <!-- Changed to heading element for better semantic structure -->
+    <!-- Providing clear paragraph for user information message -->
+    <p>{{ message }}</p> <!-- Paragraph element for the message -->
+  </div>
 
-<div id="user-tweets">
-  {% for tweet in tweets %}
-  <span class="stack">
-    {{ tweet.text }}
-  </span>
-  {% endfor %}
-</div>
+  <!-- Section containing user tweets -->
+  <div id="user-tweets" role="list" aria-labelledby="user-tweets-header">
+    <!-- Heading for user tweets section -->
+    <h3 id="user-tweets-header">User Tweets</h3> <!-- Changed to heading element for better semantic structure and added ID for ARIA association -->
+    
+    <!-- Using ARIA attributes for better semantic meaning -->
+    <ul>
+      {% for tweet in tweets %}
+      <!-- List item for each tweet -->
+      <li role="listitem">{{ tweet.text }}</li> <!-- Changing span to list item for better semantic structure -->
+      {% endfor %}
+    </ul>
+  </div>
 {% endblock %}
